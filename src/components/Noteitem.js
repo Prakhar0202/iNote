@@ -9,7 +9,9 @@ const Noteitem = (props) => {
           <h5 className="card-title">{note.title}</h5>
           <h6 className="card-subtitle mb-2 text-body-secondary">{note.tag}</h6>
           <p className="card-text pt-3">{note.description}</p>
-        </div>
+          <i className="fa-solid fa-trash-can mx-2" style={{ color: '#9e07d5' }}></i>
+          <i className="fa-solid fa-file-pen mx-2" style={{color: "#9e07d5"}}></i>
+            </div>
       </div>
     </div>
   );
