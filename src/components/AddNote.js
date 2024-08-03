@@ -16,7 +16,7 @@ const AddNote = () => {
   return (
     <div>
       <div className="container my-3">
-        <h1>Add a Note</h1>
+        <h2>Add a Note</h2>
 
         <form className="my-3 border border-dark rounded p-5">
           <div className="mb-3">
@@ -60,7 +60,7 @@ const AddNote = () => {
             className="btn btn-primary"
             onClick={handleClick}
           >
-            Submit
+            Add Note
           </button>
         </form>
       </div>

@@ -94,9 +94,26 @@ const NoteState = (props) => {
   };
 
   // Delete a Note
-  const deleteNote = () => {};
+  const deleteNote = (id) => {
+    console.log("Note Deleted with id: " + id)
+    const newNotes = notes.filter((note)=>{return note._id!==id})
+    setNotes(newNotes);
+  };
+  
   // Edit a Note
-  const editNote = () => {};
+//   const editNote = (_id, title, description, tag) => {
+//     console.log("editing a new note")
+//     const note = {
+//       _id: "66ac96c80377076c132dc31d8",
+//       user: "66ab204a69d5a7fde5905c3e",
+//       title: title,
+//       description: description,
+//       tag: tag,
+//       date: "2024-08-02T08:20:24.946+00:00",
+//       __v: 0,
+//     };
+//     setNotes(notes.concat(note));
+//   };
   return (
     <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
       {props.children}
