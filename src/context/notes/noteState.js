@@ -35,7 +35,8 @@ const getNotes = async () => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhYjIwNGE2OWQ1YTdmZGU1OTA1YzNlIn0sImlhdCI6MTcyMjU3NjAxM30.rtH2gFALrmNJlzXRTVV39BAACjtoQAlGBaExuz10p0g",
       },
     });
-    const json = response.json();
+    const json = await response.json();
+    setNotes([...notes, json]);
     const note = {
       _id: id,
       user: "66ab204a69d5a7fde5905c3e",
@@ -60,6 +61,7 @@ const getNotes = async () => {
   });
   const json = response.json();
   console.log(json)
+ 
     console.log("Note Deleted with id: " + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
@@ -81,6 +83,7 @@ const getNotes = async () => {
       },
     });
     const json = response.json();
+     setNotes(json);
     for (let index = 0; index <= notes.length; index++) {
       const element = notes(index);
       if (element._id === id) {
