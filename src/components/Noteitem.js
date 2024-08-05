@@ -4,8 +4,9 @@ import noteContext from "../context/notes/noteContext";
 const Noteitem = (props) => {
   const context = useContext(noteContext);
   const { deleteNote} = context;
+  const {note, updateNote} = props;
 
-  const { note } = props;
+  
   return (
     <div className="col-md-3">
       <div className="card my-3 ">
@@ -21,7 +22,7 @@ const Noteitem = (props) => {
           <i
             className="fa-solid fa-file-pen mx-2"
             style={{ color: "#9e07d5" }}
-            // onClick={()=>{editNote(note._id)}}
+            onClick={()=>{updateNote(note)}}
           ></i>
         </div>
       </div>
