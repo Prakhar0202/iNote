@@ -61,7 +61,6 @@ const getNotes = async () => {
   });
   const json = response.json();
   console.log(json)
- 
     console.log("Note Deleted with id: " + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
@@ -70,7 +69,7 @@ const getNotes = async () => {
   };
 
   // Edit a Note
-  const editNote = async (id, title, description, tag) => {
+  const updateNote = async (id, title, description, tag) => {
     // API Call
     console.log("editing a new note");
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
@@ -94,7 +93,7 @@ const getNotes = async () => {
     }
   };
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes}}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, updateNote, getNotes}}>
       {props.children}
     </NoteContext.Provider>
   );
