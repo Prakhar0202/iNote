@@ -38,7 +38,7 @@ const NoteState = (props) => {
   };
 
   // Delete a Note
-  const deleteNote = async (id) => {
+  const deleteNote = async (id) => { // eslint-disable-next-line
     const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
       method: "DELETE",
       headers: {
@@ -46,7 +46,6 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhYjIwNGE2OWQ1YTdmZGU1OTA1YzNlIn0sImlhdCI6MTcyMjU3NjAxM30.rtH2gFALrmNJlzXRTVV39BAACjtoQAlGBaExuz10p0g",
       },
     });
-    const json = await response.json();
 ;
 
     const newNotes = notes.filter((note) => note._id !== id);
@@ -54,7 +53,7 @@ const NoteState = (props) => {
   };
 
   // Edit a Note
-  const editNote = async (id, title, description, tag) => {
+  const editNote = async (id, title, description, tag) => { // eslint-disable-next-line
     const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "PUT",
       body: JSON.stringify({ title, description, tag }),
@@ -64,7 +63,6 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZhYjIwNGE2OWQ1YTdmZGU1OTA1YzNlIn0sImlhdCI6MTcyMjU3NjAxM30.rtH2gFALrmNJlzXRTVV39BAACjtoQAlGBaExuz10p0g",
       },
     });
-    const json = await response.json();
 ;
 
     const newNotes = notes.map((note) =>
