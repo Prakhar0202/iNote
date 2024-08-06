@@ -6,7 +6,7 @@ const Navbar = () => {
   
   return (
   
-    <nav className="navbar navbar-dark navbar-expand-lg bg-dark ">
+    <nav className="navbar navbar-dark navbar-expand-lg bg-dark fixed-top mb-3">
     <div className="container-fluid">
       <Link className="navbar-brand" to="/">iNote</Link>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,8 +22,8 @@ const Navbar = () => {
           </li>
         </ul>
         <form className='d-flex' >
-  <Link className="btn btn-primary me-md-2" to="/login" type="button">Login</Link>
-  <Link className="btn btn-primary" to="/signup" type="button">SignUp</Link>
+  <Link className="btn btn-secondary me-md-2" to="/login" type="button">Login</Link>
+  <Link className="btn btn-secondary" to="/signup" type="button">SignUp</Link>
 </form>
       </div>
     </div>

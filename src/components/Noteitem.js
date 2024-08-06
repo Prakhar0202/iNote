@@ -17,12 +17,15 @@ const Noteitem = (props) => {
           <i
             className="fa-solid fa-trash-can mx-2"
             style={{ color: "#9e07d5" }}
-            onClick={()=>{deleteNote(note._id)}}
+            onClick={()=>{deleteNote(note._id);
+            props.showAlert('Note Deleted Successfully', 'success')
+            }}
           ></i>
           <i
             className="fa-solid fa-file-pen mx-2"
             style={{ color: "#9e07d5" }}
-            onClick={()=>{updateNote(note)}}
+            onClick={()=>{updateNote(note);   
+            }}
           ></i>
         </div>
       </div>

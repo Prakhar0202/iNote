@@ -1,9 +1,9 @@
 import Notes from "./Notes"
-const Home = () => {
-  
+const Home = (props) => {
+  const {showAlert} = props
   return (
-    <div>
-    <Notes/>
+    <div className="container">
+    <Notes showAlert = {showAlert}/>
     </div>
   )
 }

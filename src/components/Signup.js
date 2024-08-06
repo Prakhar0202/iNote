@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
   const [credentials, setCredentials] = useState({name: "", email: "", password: "", cpassword: ""});
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -21,9 +21,11 @@ const Signup = () => {
         {
             localStorage.setItem('token',json.authtoken);
             navigate('/')
+            props.showAlert("Account created Successfully", "success")
+
         }
         else{
-            alert("Invalid Credentials")
+            props.showAlert("Invalid Credentials", "danger")
         }
   };
   
@@ -31,7 +33,7 @@ const Signup = () => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div>
+    <div  className="container my-5">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
