@@ -6,14 +6,19 @@ import AddNote from "./AddNote";
 const Notes = () => {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
-  
+
   useEffect(() => {
     getNotes(); // eslint-disable-next-line
   }, []);
-  
+
   const ref = useRef(null);
   const refClose = useRef(null);
-  const [note, setNote] = useState({id: "", etitle: "", edescription: "", etag: "" });
+  const [note, setNote] = useState({
+    id: "",
+    etitle: "",
+    edescription: "",
+    etag: "",
+  });
 
   const updateNote = (currentNote) => {
     ref.current.click();
@@ -21,15 +26,15 @@ const Notes = () => {
       id: currentNote._id || "",
       etitle: currentNote.title || "",
       edescription: currentNote.description || "",
-      etag: currentNote.tag || ""
+      etag: currentNote.tag || "",
     });
   };
 
   const handleClick = (e) => {
     refClose.current.click();
     // Perform update operation here, e.g., make an API call to update the note
-    console.log('Updating note:', note);
-    editNote(note.id, note.etitle, note.edescription, note.etag)
+    console.log("Updating note:", note);
+    editNote(note.id, note.etitle, note.edescription, note.etag);
   };
 
   const onChange = (e) => {
@@ -84,6 +89,8 @@ const Notes = () => {
                     name="etitle"
                     value={note.etitle}
                     onChange={onChange}
+                    minLength={3}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -96,6 +103,8 @@ const Notes = () => {
                     name="edescription"
                     value={note.edescription}
                     onChange={onChange}
+                    minLength={6}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -122,7 +131,13 @@ const Notes = () => {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleClick}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleClick}
+                disabled={note.etitle.length<3 || note.edescription.length<6}
+
+              >
                 Update Note
               </button>
             </div>
@@ -131,8 +146,11 @@ const Notes = () => {
       </div>
 
       <div>
-        <div className="row">
+        <div className="row my-3">
           <h2>Your Notes</h2>
+          <div className="container mx-2">
+            {notes.length === 0 && "No Notes to display"}
+          </div>
           {notes.map((note) => (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />
           ))}
