@@ -8,6 +8,7 @@ const AddNote = () => {
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
+    setNote({title: "", description: "", tag: ""})
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -31,6 +32,7 @@ const AddNote = () => {
               onChange={onChange}
               minLength={3}
               required
+              value={note.title}
             />
           </div>
           <div className="mb-3">
@@ -45,6 +47,8 @@ const AddNote = () => {
               onChange={onChange}
               minLength={6}
               required
+              value={note.description}
+
             />
           </div>
           <div className="mb-3">
@@ -57,6 +61,8 @@ const AddNote = () => {
               id="tag"
               name="tag"
               onChange={onChange}
+              value={note.tag}
+
             />
           </div>
           <button

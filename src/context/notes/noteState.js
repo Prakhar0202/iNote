@@ -16,7 +16,7 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+;
     setNotes(json);
   };
 
@@ -32,7 +32,7 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+;
 
     setNotes([...notes, json]);
   };
@@ -47,7 +47,7 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+;
 
     const newNotes = notes.filter((note) => note._id !== id);
     setNotes(newNotes);
@@ -65,7 +65,7 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+;
 
     const newNotes = notes.map((note) =>
       note._id === id ? { ...note, title, description, tag } : note
