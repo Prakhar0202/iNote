@@ -8,9 +8,8 @@ const AddNote = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
-    setNote({title: "", description: "", tag: ""})
-    props.showAlert('Note Added Successfully', 'success')
-
+    setNote({ title: "", description: "", tag: "" });
+    props.showAlert("Note Added Successfully", "success");
   };
   const onChange = (e) => {
     setNote({ ...note, [e.target.name]: e.target.value });
@@ -50,7 +49,6 @@ const AddNote = (props) => {
               minLength={6}
               required
               value={note.description}
-
             />
           </div>
           <div className="mb-3">
@@ -64,14 +62,13 @@ const AddNote = (props) => {
               name="tag"
               onChange={onChange}
               value={note.tag}
-
             />
           </div>
           <button
             type="submit"
             className="btn btn-primary"
             onClick={handleClick}
-            disabled={note.title.length<3 || note.description.length<6}
+            disabled={note.title.length < 3 || note.description.length < 6}
           >
             Add Note
           </button>

@@ -1,43 +1,43 @@
 import React, { useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
-  const [credentials, setCredentials] = useState({name: "", email: "", password: "", cpassword: ""});
+  const [credentials, setCredentials] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-   const {name, email, password} = credentials;
+    const { name, email, password } = credentials;
     const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
       method: "POST",
-      body: JSON.stringify({name,
-        email,
-        password,
-      }),
+      body: JSON.stringify({ name, email, password }),
       headers: { "Content-Type": "application/json" },
     });
     const json = await response.json();
     console.log(json);
-    if(json.success)
-        {
-            localStorage.setItem('token',json.authToken);
-            navigate('/')
-            props.showAlert("Account created Successfully", "success")
-
-        }
-        else{
-            props.showAlert("Invalid Credentials", "danger")
-        }
+    if (json.success) {
+      localStorage.setItem("token", json.authToken);
+      navigate("/");
+      props.showAlert("Account created Successfully", "success");
+    } else {
+      props.showAlert("Invalid Credentials", "danger");
+    }
   };
-  
+
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div  className="container my-5">
+    <div className="container my-5">
+      <h2>Sign Up to access iNote</h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="my-3">
           <label htmlFor="name" className="form-label">
-           Username
+            Username
           </label>
           <input
             type="text"
@@ -46,8 +46,8 @@ const Signup = (props) => {
             name="name"
             onChange={onChange}
           />
-         </div>
-        <div className="mb-3">
+        </div>
+        <div className="my-3">
           <label htmlFor="email" className="form-label">
             Email address
           </label>
@@ -64,7 +64,7 @@ const Signup = (props) => {
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div className="mb-3">
+        <div className="my-3">
           <label htmlFor="password" className="form-label">
             Password
           </label>
@@ -75,10 +75,9 @@ const Signup = (props) => {
             name="password"
             value={credentials.password}
             onChange={onChange}
-
           />
         </div>
-        <div className="mb-3">
+        <div className="my-3">
           <label htmlFor="cpassword" className="form-label">
             Confirm Password
           </label>

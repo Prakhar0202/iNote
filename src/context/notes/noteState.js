@@ -8,8 +8,8 @@ const NoteState = (props) => {
 
   // Fetch All Notes
   const getNotes = async () => {
-    const token = localStorage.getItem('token');
-    
+    const token = localStorage.getItem("token");
+
     if (!token) {
       console.error("No token found, authentication required.");
       return;
@@ -37,8 +37,8 @@ const NoteState = (props) => {
 
   // Add a Note
   const addNote = async (title, description, tag) => {
-    const token = localStorage.getItem('token');
-   
+    const token = localStorage.getItem("token");
+
     if (!token) {
       console.error("No token found, authentication required.");
       return;
@@ -64,8 +64,8 @@ const NoteState = (props) => {
 
   // Delete a Note
   const deleteNote = async (id) => {
-    const token = localStorage.getItem('token');
-   
+    const token = localStorage.getItem("token");
+
     if (!token) {
       console.error("No token found, authentication required.");
       return;
@@ -89,7 +89,7 @@ const NoteState = (props) => {
 
   // Edit a Note
   const editNote = async (id, title, description, tag) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       console.error("No token found, authentication required.");
       return;
@@ -107,7 +107,7 @@ const NoteState = (props) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const json = await response.json();
-      console.log(json)
+      console.log(json);
       const newNotes = notes.map((note) =>
         note._id === id ? { ...note, title, description, tag } : note
       );

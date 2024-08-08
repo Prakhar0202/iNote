@@ -17,16 +17,15 @@ const Login = (props) => {
         password: credentials.password,
       }),
     });
-    
+
     const json = await response.json();
     console.log("Server response:", json); // Debugging line
 
     if (json.success) {
-     
-      localStorage.setItem('token', json.authToken);
-     
+      localStorage.setItem("token", json.authToken);
+
       props.showAlert("Logged in Successfully", "success");
-      navigate('/');
+      navigate("/");
     } else {
       props.showAlert("Invalid Details", "danger");
     }
@@ -38,8 +37,9 @@ const Login = (props) => {
 
   return (
     <div className="container my-5">
+      <h2>Login to iNote to continue </h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="my-3">
           <label htmlFor="email" className="form-label">
             Email address
           </label>
@@ -57,7 +57,7 @@ const Login = (props) => {
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div className="mb-3">
+        <div className="my-3">
           <label htmlFor="password" className="form-label">
             Password
           </label>
