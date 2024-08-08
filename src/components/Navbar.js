@@ -3,7 +3,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const Navbar = () => {
   let location = useLocation();
   let navigate = useNavigate();
-  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <nav className="navbar navbar-dark navbar-expand-lg bg-dark fixed-top mb-3">
       <div className="container-fluid">
@@ -46,7 +49,7 @@ const Navbar = () => {
             </li>
           </ul>
 
-          
+          {!localStorage.getItem("token") ? (
             <form className="d-flex">
               <Link
                 className="btn btn-secondary me-md-2"
@@ -59,8 +62,15 @@ const Navbar = () => {
                 SignUp
               </Link>
             </form>
-       
-
+          ) : (
+            <button
+              className="btn btn-secondary"
+              onClick={handleLogout}
+              type="button"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </nav>
