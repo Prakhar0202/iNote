@@ -7,16 +7,16 @@ import { useNavigate } from "react-router-dom";
 const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNotes, editNote } = context;
-let navigate = useNavigate();
+  let navigate = useNavigate();
+
   useEffect(() => {
-    if(localStorage.getItem('token')){
-      getNotes(); // eslint-disable-next-line
-
-    }else{
-navigate('/login')
-    }
+    const token = localStorage.getItem("token");
+    if (token) {
+      getNotes();
+    } else {
+      navigate("/login");
+    }// eslint-disable-next-line
   }, []);
-
   const ref = useRef(null);
   const refClose = useRef(null);
   const [note, setNote] = useState({
@@ -38,10 +38,8 @@ navigate('/login')
 
   const handleClick = (e) => {
     refClose.current.click();
-    // Perform update operation here, e.g., make an API call to update the note
-    console.log("Updating note:", note);
     editNote(note.id, note.etitle, note.edescription, note.etag);
-    props.showAlert('Note Updated Successfully', 'success')
+    props.showAlert("Note Updated Successfully", "success");
   };
 
   const onChange = (e) => {
@@ -50,7 +48,7 @@ navigate('/login')
 
   return (
     <>
-      <AddNote showAlert = {props.showAlert}/>
+      <AddNote showAlert={props.showAlert} />
 
       <button
         type="button"
@@ -62,7 +60,6 @@ navigate('/login')
         Launch demo modal
       </button>
 
-      {/* <!-- Modal --> */}
       <div
         className="modal fade"
         id="exampleModal"
@@ -142,8 +139,9 @@ navigate('/login')
                 type="button"
                 className="btn btn-primary"
                 onClick={handleClick}
-                disabled={note.etitle.length<3 || note.edescription.length<6}
-
+                disabled={
+                  note.etitle.length < 3 || note.edescription.length < 6
+                }
               >
                 Update Note
               </button>
@@ -159,7 +157,12 @@ navigate('/login')
             {notes.length === 0 && "No Notes to display"}
           </div>
           {notes.map((note) => (
-            <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
+            <Noteitem
+              key={note._id}
+              updateNote={updateNote}
+              note={note}
+              showAlert={props.showAlert}
+            />
           ))}
         </div>
       </div>
